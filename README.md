@@ -1,2 +1,2 @@
-# Smith_School_Marketing_VR_Researcb_Project
+# UMD Smith School Marketing VR Research Project
 
