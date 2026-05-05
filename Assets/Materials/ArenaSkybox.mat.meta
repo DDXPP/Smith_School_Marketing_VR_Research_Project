@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 77f935b34834f410e9a10c5c3df69cb8
+timeCreated: 1465985538
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66207
+  packageName: Let's Try Assets
+  packageVersion: 3.0
+  assetPath: Assets/UnityTechnologies/Shared Assets/Materials/Arena/ArenaSkybox.mat
+  uploadId: 680588
