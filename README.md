@@ -61,16 +61,22 @@ Assets/
     - Controller vibration confirms successful spawn
 
 ### Spawnable Object Prep
+To import and prepare an object  
 
-## Configurable Parameters
-Several important variables are exposed as public fields in the Unity Inspector, allowing you to tune system behavior without modifying code.
+## Configurable Variables
+Several important variables are exposed as public fields in the Unity inspector, allowing you to tune system behavior without modifying code. To configure the following variables, first click the GameObject `ObjectManager` in Unity's hierarchy window; then locate the component `Object Spawner (Script)` in the inspector where you can enter the desired values.
 
 ### Spawn Position
+- Controls where objects are instantiated in the scene
+- Default: above the table surface in the scene
 
 ### Samples Per Second
+- Controls how frequently interaction data is collected
+- Default: `10` samples per second
 
 ### Save Interval
-
+- Controls how often collected data is written/saved
+- Default: every `2` seconds
 
 ## Logged Data
 Each object records (in `.csv` file):
