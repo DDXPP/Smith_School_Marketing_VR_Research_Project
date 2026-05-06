@@ -8,6 +8,8 @@ public class ObjectSpawner : MonoBehaviour
 {
     private GameObject currentObject;
     public Vector3 spawnPosition = new Vector3(0f, 1.05f, 0.5f);
+    public float SamplesPerSecond = 10f;
+    public float saveInterval = 2f;
 
     public void SpawnObject(GameObject prefab)
     {
@@ -43,8 +45,10 @@ public class ObjectSpawner : MonoBehaviour
         if (currentObject.GetComponent<InteractionLogger>() == null)
             currentObject.AddComponent<InteractionLogger>();
 
-        if (currentObject.GetComponent<DataRecorder>() == null)
+        if (currentObject.GetComponent<DataRecorder>() == null) 
             currentObject.AddComponent<DataRecorder>();
+        currentObject.GetComponent<DataRecorder>().SamplesPerSecond = SamplesPerSecond;
+        currentObject.GetComponent<DataRecorder>().saveInterval = saveInterval;
 
         // if (currentObject.GetComponent<CSVLogger>() == null)
         //     currentObject.AddComponent<CSVLogger>();

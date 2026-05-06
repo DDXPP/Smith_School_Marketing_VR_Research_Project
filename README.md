@@ -1,14 +1,76 @@
 # UMD Smith School Marketing VR Research Project
 
+
 ## Overview
+This project is developed for the Marketing Department of Robert H. Smith School of Business at the University of Maryland. This project focuses on XR interaction analytics in Unity, enabling users to interact with dynamically spawned objects in VR while capturing structured behavioral data such as grab frequency, interaction duration, and visual attention.
+
+The system is designed for user behavior analysis, interaction research, and XR prototyping, with an emphasis on flexible data logging and extensibility.
 
 ## Features
+- Dynamic Object Spawning
+- XR Interaction Analytics
+- View-Based Attention Tracking
+- Structured Data Logging
+- More to be added
 
 ## Project Structure
+```
+Assets/
+├── Scenes/
+│   ├── UserStudy.unity
+│
+├── Scripts/
+│   ├── DataRecorder.cs
+│   ├── InteractionLogger.cs
+│   ├── ObjectSpawner.cs
+│   ├── SelectorMenuBuilder.cs
+│   ├── SelectorMenuInteractions.cs
+│   ├── StatsDisplay.cs
+│
+├── Resources/
+│   ├── SpawnableObjects/
 
+```
 ## Requirements
+- Unity 6.4 (project developed and tested on version 6000.4.1f1)
+- Meta Interaction SDK
+- Unity USD Importer package
 
 ## Setup Instructions 
+1. Clone the repository:
+`git clone https://github.com/DDXPP/Smith_School_Marketing_VR_Research_Project.git`
+2. Open the project in Unity 6.4
+3. Install required packages (via Package Manager):
+    -   Meta XR SDKs
+    -   USD Importer (if using USDZ assets)
+    
+    Detailed instructions on setting up Unity Editor and setting up Unity 3D Project can be found in [Meta Horizon documentation](https://developers.meta.com/horizon/documentation/unity/unity-tutorial-hello-vr/#step-2-set-up-your-unity-3d-project).   
+
+4. Open `UserStudy` scene
+5. Build and run on an connected XR device (project developed and tested on Meta Quest 2)
+
+## Usage Guide
+### Controller inputs
+- X Button
+    - Toggle stats display (show/hide)
+- Y Button (Single Press)
+    - Open object selection menu
+    - Press again to cycle through available objects
+- Y Button (Long Press/Hold)
+    - Spawn the currently selected object
+    - Controller vibration confirms successful spawn
+
+### Spawnable Object Prep
+
+## Configurable Parameters
+Several important variables are exposed as public fields in the Unity Inspector, allowing you to tune system behavior without modifying code.
+
+### Spawn Position
+
+### Samples Per Second
+
+### Save Interval
+
 
 ## Logged Data
 Each object records (in `.csv` file):
@@ -31,5 +93,5 @@ Each object records (in `.csv` file):
     - Right
     - Up
 
----
-This project was developed for the Marketing Department at  Robert H. Smith School of Business to explore XR interaction analytics and real-world object integration in Unity.
+<!-- ---
+Keywords: XR, VR, Unity, Interaction Tracking, Data Logging, User Behavior Analytics -->
