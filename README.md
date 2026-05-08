@@ -58,9 +58,10 @@ Assets/
 - Y Button (Single Press)
     - Open object selection menu
     - Press again to cycle through available objects
+    - Use "DESTOY ALL" button clears all spawned objects in the scene
 - Y Button (Long Press/Hold)
-    - Spawn the currently selected object
-    - Controller vibration confirms successful spawn
+    - Confirm the current selection
+    - Controller vibration confirms successful selection
 
 ### Spawnable Object Prep
 To make an object spawnable in the project:
