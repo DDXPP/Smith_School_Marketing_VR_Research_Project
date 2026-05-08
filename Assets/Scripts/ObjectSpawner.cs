@@ -13,10 +13,10 @@ public class ObjectSpawner : MonoBehaviour
 
     public void SpawnObject(GameObject prefab)
     {
-        if (currentObject != null)
-        {
-            Destroy(currentObject);
-        }
+        // if (currentObject != null)
+        // {
+        //     Destroy(currentObject);
+        // }
 
         currentObject = Instantiate(
             prefab,
@@ -76,6 +76,15 @@ public class ObjectSpawner : MonoBehaviour
 
         hgi.InjectOptionalPointableElement(pointable);
         gi.InjectOptionalPointableElement(pointable);
+    }
+
+    public void DestroyObject(GameObject prefab)
+    {
+        GameObject temp = GameObject.Find(prefab.name);
+        if (temp != null)
+        {
+            Destroy(temp);
+        }
     }
 }
 

@@ -15,33 +15,46 @@ public class SelectorMenuBuilder : MonoBehaviour
         loadedPrefabs = Resources.LoadAll<GameObject>("SpawnableObjects");
 
         System.Array.Sort(loadedPrefabs, (a, b) => a.name.CompareTo(b.name));
-        // Debug.Log("++++++++++++++++++++++ init");
         BuildMenu();
-        // Debug.Log("++++++++++++++++++++++ menu built");
     }
 
     void BuildMenu()
     {
+        GameObject btnDestroyAll = Instantiate(buttonPrefab, container);
+        PrettifyButton(btnDestroyAll, "DESTROY ALL");
+
+        btnDestroyAll.GetComponent<Button>().onClick.AddListener(() =>
+        {
+             for (int i = 0; i < loadedPrefabs.Length; i++)
+            {
+                spawner.DestroyObject(loadedPrefabs[i]);
+            }
+        });
+
+        
         for (int i = 0; i < loadedPrefabs.Length; i++)
         {
             int index = i;
+
             GameObject btn = Instantiate(buttonPrefab, container);
-
-            // prettify 
-            TextMeshProUGUI tmp = btn.GetComponentInChildren<TextMeshProUGUI>();
-            tmp.text = loadedPrefabs[i].name;
-            tmp.fontSize = 24;
-            tmp.enableAutoSizing = true;
-            tmp.fontSizeMin = 14;
-            tmp.fontSizeMax = 28;
-            tmp.alignment = TextAlignmentOptions.Center;
-            tmp.margin = new Vector4(5, 5, 5, 5);
-
+            PrettifyButton(btn, loadedPrefabs[i].name);
+            
             btn.GetComponent<Button>().onClick.AddListener(() =>
             {
                 spawner.SpawnObject(loadedPrefabs[index]);
             });
-            // Debug.Log("++++++++++++++++++++++ button added");
         }
+    }
+
+    void PrettifyButton(GameObject btn, string btnText)
+    {
+        TextMeshProUGUI tmp = btn.GetComponentInChildren<TextMeshProUGUI>();
+        tmp.text = btnText;
+        tmp.fontSize = 24;
+        tmp.enableAutoSizing = true;
+        tmp.fontSizeMin = 14;
+        tmp.fontSizeMax = 28;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.margin = new Vector4(5, 5, 5, 5);
     }
 }
