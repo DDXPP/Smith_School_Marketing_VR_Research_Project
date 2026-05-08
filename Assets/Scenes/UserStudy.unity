@@ -2162,6 +2162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSpawner
   spawnPosition: {x: 0, y: 1.05, z: 0.5}
+  SamplesPerSecond: 10
+  saveInterval: 2
 --- !u!4 &1058844972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4962838275866674, guid: 356b1d37aedb571479e6cff7bda80568, type: 3}

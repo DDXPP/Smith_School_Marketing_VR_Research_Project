@@ -38,7 +38,9 @@ Assets/
 
 ## Setup Instructions 
 1. Clone the repository:
-`git clone https://github.com/DDXPP/Smith_School_Marketing_VR_Research_Project.git`
+
+```git clone https://github.com/DDXPP/Smith_School_Marketing_VR_Research_Project.git```
+
 2. Open the project in Unity 6.4
 3. Install required packages (via Package Manager):
     -   Meta XR SDKs
@@ -61,7 +63,33 @@ Assets/
     - Controller vibration confirms successful spawn
 
 ### Spawnable Object Prep
-To import and prepare an object  
+To make an object spawnable in the project:
+1. Place the prefab inside:
+
+    ```Assets/Resources/SpawnableObjects/```
+
+
+2. Ensure the prefab contains the following components:
+    - `Mesh Renderer`
+    - `Mesh Collider`
+
+3. If importing a raw 3D model:
+    - Drag the model into the scene
+    - Configure components if needed (you may need to manually select the mesh in `Mesh Collider`)
+    - Create a prefab from the model before placing it into the `SpawnableObjects` folder
+
+
+### Exporting Logged Data
+Logged data files are stored locally on the Meta Quest 2 at:
+
+```/storage/emulated/0/Android/data/<your.package.name>/files/```
+
+File name: `YYYYMMDD_HHMMSS_[object_name]_vr_data.csv`
+
+You can access the files by:
+- Connecting the headset to a computer via USB
+- Using Android File Transfer tools
+- Browsing the device storage directly
 
 ## Configurable Variables
 Several important variables are exposed as public fields in the Unity inspector, allowing you to tune system behavior without modifying code. To configure the following variables, first click the GameObject `ObjectManager` in Unity's hierarchy window; then locate the component `Object Spawner (Script)` in the inspector where you can enter the desired values.
