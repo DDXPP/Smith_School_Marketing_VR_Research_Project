@@ -58,7 +58,7 @@ Assets/
 - Y Button (Single Press)
     - Open object selection menu
     - Press again to cycle through available objects
-    - Use "DESTOY ALL" button clears all spawned objects in the scene
+    - Use "DESTOY ALL" button to clear all spawned objects in the scene
 - Y Button (Long Press/Hold)
     - Confirm the current selection
     - Controller vibration confirms successful selection
