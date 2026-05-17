@@ -37,7 +37,7 @@ public class DataRecorder : MonoBehaviour
         // -------------------- build CSV file
         string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         filePath = Path.Combine(Application.persistentDataPath, $"{timestamp}_{this.gameObject.name}_vr_data.csv");
-        tempString.AppendLine("date,time,runtime,object_name,x,y,z,rx,ry,rz,touch,grab,time_to_grab,grab_dist,grab_event,grab_count,grab_duration,touch_no_grab_count,side,frontDot,rightDot,upDot,is_final_selection");
+        tempString.AppendLine("date,time,runtime,object_name,x,y,z,rx,ry,rz,cam_x,cam_y,cam_z,cam_rx,cam_ry,cam_rz,touch,grab,time_to_grab,grab_dist,grab_event,grab_count,grab_duration,touch_no_grab_count,side,frontDot,rightDot,upDot,is_final_selection");
         
         InvokeRepeating(nameof(SaveToFile), saveInterval, saveInterval);
     }
@@ -77,6 +77,8 @@ public class DataRecorder : MonoBehaviour
         string object_name =  this.gameObject.name;
         Vector3 pos = transform.position;
         Quaternion rot = transform.rotation;
+        Vector3 cam_pos = logger.cameraTransform.position;
+        Quaternion cam_rot = logger.cameraTransform.rotation;
         bool touch = logger.isTouching;
         bool grab = logger.isGrabbing;
         float time_to_grab = logger.lastTimeToGrab;
@@ -94,6 +96,8 @@ public class DataRecorder : MonoBehaviour
             $"{date},{time},{runtime},{object_name}," +
             $"{pos.x},{pos.y},{pos.z}," +
             $"{rot.eulerAngles.x},{rot.eulerAngles.y},{rot.eulerAngles.z}," +
+            $"{cam_pos.x},{cam_pos.y},{cam_pos.z}," +
+            $"{cam_rot.eulerAngles.x},{cam_rot.eulerAngles.y},{cam_rot.eulerAngles.z}," +
             $"{touch},{grab}," + 
             $"{time_to_grab},{grab_dist}," + 
             $"{t.grab_event},{grab_count},{grab_duration},{touch_no_grab_count}," + 
