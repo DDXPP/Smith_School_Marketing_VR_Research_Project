@@ -30,6 +30,8 @@ public class InteractionLogger : MonoBehaviour
     private bool grabbedDuringTouch = false;
     private float grabStartTime;
 
+    public bool isOnFinalSelectionTable = false;
+
 
     void Awake()
     {
@@ -127,11 +129,30 @@ public class InteractionLogger : MonoBehaviour
                 grabDuration = Time.time - grabStartTime;
                 dataRecorder.Log((true, "GrabEnd"));
 
+                // if (isOnFinalSelectionTable)
+                //     isOnFinalSelectionTable = false;
+
                 touchStartTime = -1f;
                 // grabStartTime = -1f;
                 break;
 
             
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SelectionTable"))
+        {
+            isOnFinalSelectionTable = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SelectionTable"))
+        {
+            isOnFinalSelectionTable = false;
         }
     }
 

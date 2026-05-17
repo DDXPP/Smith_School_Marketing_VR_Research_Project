@@ -37,7 +37,8 @@ public class DataRecorder : MonoBehaviour
         // -------------------- build CSV file
         string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         filePath = Path.Combine(Application.persistentDataPath, $"{timestamp}_{this.gameObject.name}_vr_data.csv");
-        tempString.AppendLine("date,time,runtime,object_name,x,y,z,rx,ry,rz,touch,grab,time_to_grab,grab_dist,grab_event,grab_count,grab_duration,touch_no_grab_count,side,frontDot,rightDot,upDot");
+        tempString.AppendLine("date,time,runtime,object_name,x,y,z,rx,ry,rz,touch,grab,time_to_grab,grab_dist,grab_event,grab_count,grab_duration,touch_no_grab_count,side,frontDot,rightDot,upDot,is_final_selection");
+        
         InvokeRepeating(nameof(SaveToFile), saveInterval, saveInterval);
     }
 
@@ -70,8 +71,6 @@ public class DataRecorder : MonoBehaviour
 
     public void Log((bool logGrabEvent, string grab_event) t)
     {
-        // if (t.logGrabEvent)
-        //     Debug.Log($"{t.logGrabEvent} {t.grab_event}");
         string date = DateTime.Now.ToString("yyyy-MM-dd");
         string time = DateTime.Now.ToString("HH:mm:ss.fff");
         float runtime = Time.time;
@@ -89,7 +88,8 @@ public class DataRecorder : MonoBehaviour
         string grab_count = t.logGrabEvent ? (t.grab_event == "GrabStart" ? logger.grabCount.ToString() : "") : "";
         string grab_duration = t.logGrabEvent ? (t.grab_event == "GrabEnd" ? logger.grabDuration.ToString() : (t.grab_event == "GrabStart" ? "0" : "")) : "";
         string touch_no_grab_count = t.logGrabEvent ? (t.grab_event == "TouchNoGrab" ? logger.touchNoGrabCount.ToString() : "") : "";
-        
+        string is_final_selection = logger.isOnFinalSelectionTable ? "true" : "";
+
         tempString.AppendLine(
             $"{date},{time},{runtime},{object_name}," +
             $"{pos.x},{pos.y},{pos.z}," +
@@ -97,11 +97,8 @@ public class DataRecorder : MonoBehaviour
             $"{touch},{grab}," + 
             $"{time_to_grab},{grab_dist}," + 
             $"{t.grab_event},{grab_count},{grab_duration},{touch_no_grab_count}," + 
-            $"{side},{frontDot},{rightDot},{upDot}"
+            $"{side},{frontDot},{rightDot},{upDot}," + 
+            $"{is_final_selection}"
         );
-
-        // if (t.logGrabEvent)
-        //     Debug.Log($"grab_event: {t.grab_event}, grab_count: {grab_count}, grab_duration: {grab_duration}, TNG_count: {touch_no_grab_count}");
-        // Debug.Log($"------------------------------ | date: {date} | time: {time} | objectName: {object_name} ");
     }
 }

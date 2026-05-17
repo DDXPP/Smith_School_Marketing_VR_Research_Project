@@ -55,7 +55,7 @@ public class StatsDisplay : MonoBehaviour
         if (logger == null) return;
 
         string sideDots = (logger.side == "Not in view") ? "" : $"Front: {logger.frontDot.ToString("F2")} | Right: {logger.rightDot.ToString("F2")} | Up: {logger.upDot.ToString("F2")}";
-
+        string isFinalSelection = logger.isOnFinalSelectionTable ? "selected" : "not selected";
         text.text =
             $"Touch: {logger.isTouching}\n" +
             $"Grab: {logger.isGrabbing}\n\n" +
@@ -65,7 +65,8 @@ public class StatsDisplay : MonoBehaviour
             $"grabCount: {logger.grabCount} | touchNoGrabCount: {logger.touchNoGrabCount}\n " + 
             $"Pos: {logger.transform.position}\n" +
             $"Rot: {logger.transform.rotation.eulerAngles}\n\n" + 
-            $"Side: {logger.side}\n" + $"{sideDots}"
+            $"Side: {logger.side}\n" + $"{sideDots}\n" +
+            $"{logger.gameObject.name} is {isFinalSelection}"
             ;
     }
 
