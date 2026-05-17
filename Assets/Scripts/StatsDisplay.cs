@@ -51,7 +51,7 @@ public class StatsDisplay : MonoBehaviour
 
     void UpdateText()
     {
-        var logger = Object.FindAnyObjectByType<InteractionLogger>();
+        InteractionLogger logger = GetClosestObject();
         if (logger == null) return;
 
         string sideDots = (logger.side == "Not in view") ? "" : $"Front: {logger.frontDot.ToString("F2")} | Right: {logger.rightDot.ToString("F2")} | Up: {logger.upDot.ToString("F2")}";
@@ -70,4 +70,28 @@ public class StatsDisplay : MonoBehaviour
             ;
     }
 
+    InteractionLogger GetClosestObject()
+    {
+        InteractionLogger[] allObjects = Object.FindObjectsByType<InteractionLogger>(FindObjectsSortMode.None);
+        
+        InteractionLogger closestObject = null;
+        float shortestDistance = Mathf.Infinity;
+
+        Camera cam = Camera.main;
+        if (cam == null) return null;        
+        Vector3 currentPosition = cam.transform.position;
+
+        foreach (InteractionLogger il in allObjects)
+        {
+            float distanceToObject = (il.transform.position - currentPosition).sqrMagnitude;
+            
+            if (distanceToObject < shortestDistance)
+            {
+                shortestDistance = distanceToObject;
+                closestObject = il;
+            }
+        }
+
+        return closestObject;
+    }
 }
