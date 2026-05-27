@@ -77,7 +77,7 @@ public class InteractionLogger : MonoBehaviour
                 {
                     touchStartTime = Time.time;
 
-                    if (TryGetRightHandPosition(out Vector3 handPos))
+                    if (TryGetCloserHandPosition(out Vector3 handPos))
                     {
                         hoverStartHandPos = handPos;
                         hoverStartDistance = Vector3.Distance(handPos, transform.position);
@@ -112,7 +112,7 @@ public class InteractionLogger : MonoBehaviour
                 {
                     lastTimeToGrab = Time.time - touchStartTime;
 
-                    if (TryGetRightHandPosition(out Vector3 handPos))
+                    if (TryGetCloserHandPosition(out Vector3 handPos))
                     {
                         lastGrabDistance = Vector3.Distance(handPos, transform.position);
                     }
@@ -207,6 +207,42 @@ public class InteractionLogger : MonoBehaviour
         }
 
         position = Vector3.zero;
+        return false;
+    }
+
+    private bool TryGetCloserHandPosition(out Vector3 position)
+    {
+        position = Vector3.zero;
+
+        InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+
+        bool leftValid = leftDevice.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 leftPos);
+        bool rightValid = rightDevice.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rightPos);
+
+        Vector3 objectPos = transform.position;
+
+        if (leftValid && rightValid)
+        {
+            float leftDistance = Vector3.Distance(leftPos, objectPos);
+            float rightDistance = Vector3.Distance(rightPos, objectPos);
+
+            position = leftDistance < rightDistance ? leftPos : rightPos;
+            return true;
+        }
+
+        if (leftValid)
+        {
+            position = leftPos;
+            return true;
+        }
+
+        if (rightValid)
+        {
+            position = rightPos;
+            return true;
+        }
+
         return false;
     }
 }
