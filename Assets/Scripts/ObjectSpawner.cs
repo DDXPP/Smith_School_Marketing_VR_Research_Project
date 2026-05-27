@@ -17,6 +17,7 @@ public class ObjectSpawner : MonoBehaviour
         // {
         //     Destroy(currentObject);
         // }
+        // ^ uncomment this if only one object is allowed in the scene
 
         currentObject = Instantiate(
             prefab,

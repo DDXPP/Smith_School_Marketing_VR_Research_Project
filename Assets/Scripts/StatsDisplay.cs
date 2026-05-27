@@ -6,8 +6,6 @@ public class StatsDisplay : MonoBehaviour
 {
     public TextMeshPro text;
 
-    // public InteractionLogger logger;
-
     private bool isVisible = true;
     private bool lastButtonState = false;
 
@@ -17,8 +15,6 @@ public class StatsDisplay : MonoBehaviour
     }
     void Update()
     {
-        // HandleToggle();
-
         if (IsButtonPressed())
         {
             isVisible = !isVisible;

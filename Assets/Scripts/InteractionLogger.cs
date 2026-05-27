@@ -36,7 +36,6 @@ public class InteractionLogger : MonoBehaviour
     void Awake()
     {
         grabbable = GetComponent<Grabbable>();
-        // dataRecorder = GetComponent<DataRecorder>();
 
         if (cameraTransform == null)
         {
@@ -50,9 +49,7 @@ public class InteractionLogger : MonoBehaviour
     {
         if (grabbable != null)
         {
-            // Debug.Log("---------------------- grabbable name: " + grabbable.name);
             grabbable.WhenPointerEventRaised += OnPointerEvent;
-            // Debug.Log("---------------------- grabbable enabled");
         }
     }
 
@@ -158,7 +155,6 @@ public class InteractionLogger : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log("----------------------" + cameraTransform.position);
         ViewSide();
     }
 
@@ -185,8 +181,6 @@ public class InteractionLogger : MonoBehaviour
         rightDot = Vector3.Dot(viewDir, this.gameObject.transform.right);
         upDot = Vector3.Dot(viewDir, this.gameObject.transform.up);
         side = GetSide(frontDot, rightDot, upDot);
-
-        // Debug.Log($"--------------- side: {side} | frontDot: {frontDot} | rightDot: {rightDot} | upDot: {upDot}");
     }
 
     string GetSide(float frontDot, float rightDot, float upDot)

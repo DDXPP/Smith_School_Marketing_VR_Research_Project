@@ -56,7 +56,6 @@ public class SelectorMenuInteractions : MonoBehaviour
             // Button just pressed
             if (pressed && !lastPressed)
             {
-                // Debug.Log("-----------------------------1");
                 pressStartTime = Time.time;
                 longPressTriggered = false;
 
@@ -72,7 +71,6 @@ public class SelectorMenuInteractions : MonoBehaviour
             // Button held
             if (pressed && isMenuVisible && !longPressTriggered)
             {
-                // Debug.Log("-----------------------------2");
                 if (Time.time - pressStartTime >= longPressThreshold)
                 {
                     SelectCurrent();
@@ -84,7 +82,6 @@ public class SelectorMenuInteractions : MonoBehaviour
             // Button released
             if (!pressed && lastPressed)
             {
-                // Debug.Log("-----------------------------3");
                 float pressDuration = Time.time - pressStartTime;
 
                 if (isMenuVisible)
@@ -99,7 +96,6 @@ public class SelectorMenuInteractions : MonoBehaviour
             }
 
             lastPressed = pressed;
-            // Debug.Log("-----------------------------4");
         }
     }
 

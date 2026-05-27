@@ -31,10 +31,9 @@ public class DataRecorder : MonoBehaviour
     void Start()
     {
         logger = GetComponent<InteractionLogger>();
-        // csvLogger = GetComponent<CSVLogger>();
         logInterval = 1.0f / SamplesPerSecond;
 
-        // -------------------- build CSV file
+        // build CSV file
         string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         filePath = Path.Combine(Application.persistentDataPath, $"{timestamp}_{this.gameObject.name}_vr_data.csv");
         tempString.AppendLine("date,time,runtime,object_name,x,y,z,rx,ry,rz,cam_x,cam_y,cam_z,cam_rx,cam_ry,cam_rz,touch,grab,time_to_grab,grab_dist,grab_event,grab_count,grab_duration,touch_no_grab_count,side,frontDot,rightDot,upDot,is_final_selection");

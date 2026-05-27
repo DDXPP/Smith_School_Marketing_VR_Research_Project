@@ -9,12 +9,11 @@ The system is designed for user behavior analysis, interaction research, and XR 
 <img src="README_pics/main_menu.png" >
 
 
-## Features
+## Main Features
 - Dynamic Object Spawning
 - XR Interaction Analytics
 - View-Based Attention Tracking
 - Structured Data Logging
-- More to be added
 
 ## Project Structure
 ```
@@ -109,6 +108,7 @@ You can access the files by:
 - Connecting the headset to a computer via USB
 - Using Android File Transfer tools
 - Browsing the device storage directly
+- For Mac users, please use tools like Android File Transfer
 
 ## Configurable Variables
 Several important variables are exposed as public fields in the Unity inspector, allowing you to tune system behavior without modifying code. To configure the following variables, first click the GameObject `ObjectManager` in Unity's hierarchy window; then locate the component `Object Spawner (Script)` in the inspector where you can enter the desired values.
