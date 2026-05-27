@@ -6,6 +6,9 @@ This project is developed for the Marketing Department of Robert H. Smith School
 
 The system is designed for user behavior analysis, interaction research, and XR prototyping, with an emphasis on flexible data logging and extensibility.
 
+<img src="README_pics/main_menu.png" >
+
+
 ## Features
 - Dynamic Object Spawning
 - XR Interaction Analytics
@@ -53,14 +56,13 @@ Assets/
 
 ## Usage Guide
 ### Controller inputs
-- X Button
+- `X` Button
     - Toggle stats display (show/hide)
-- Y Button (Single Press)
+- `Y` Button (Single Press)
     - Open object selection menu
-    - Press again to cycle through available objects
-    - Use "DESTOY ALL" button to clear all spawned objects in the scene
-- Y Button (Long Press/Hold)
-    - Confirm the current selection
+    - Iterate through the objects
+- `Y` Button (Long Press/Hold)
+    - Confirm selection
     - Controller vibration confirms successful selection
 
 ### Spawnable Object Prep
@@ -79,8 +81,24 @@ To make an object spawnable in the project:
     - Configure components if needed (you may need to manually select the mesh in `Mesh Collider`)
     - Create a prefab from the model before placing it into the `SpawnableObjects` folder
 
+### Spawn Objects and Clear the Scene
+To spawn objects into the scene:
+1. Press `Y` on the controller to open the object selection menu 
+2. Use `Y` to find the object to be spawed
+3. Hold `Y` to make the selection and spawn the selected object
+4. Repeat step 1 to 3 to spawn more objects
 
-### Exporting Logged Data
+To clear all the spawned objects in the scene:
+1. Press `Y` on the controller to open the object selection menu 
+2. Select `DESTROY ALL`
+3. Hold `Y` to confirm
+
+### Confirm Object Selection
+Some user study would require participants to make a final selection of their preferred object after comparing a few objects. To do so, simply ask the participant to put their selected object on the black side table next to the main table. 
+
+In the `.csv` file of the selected object, a column named `is_final_selection` would be marked `true`, and the time stamp when this value first becomes true would be the time when the participant makes their seleciton. 
+
+### Export Logged Data
 Logged data files are stored locally on the Meta Quest 2 at:
 
 ```/storage/emulated/0/Android/data/<your.package.name>/files/```
@@ -109,11 +127,14 @@ Several important variables are exposed as public fields in the Unity inspector,
 
 ## Logged Data
 Each object records (in `.csv` file):
-- Date & time
+- Date
+- Time
 - Runtime
 - Object name
-- Object position (`x,y,z`)
-- Object rotation (`rx,ry,rz`)
+- Object position (`x, y, z`)
+- Object rotation (`rx, ry, rz`)
+- Camera/headset position (`cam_x, cam_y, cam_z`)
+- Camera/headset rotation (`cam_rx, cam_ty, cam_rz`)
 - Touch status
 - Grab status
 - Time to grab from touching
@@ -121,12 +142,13 @@ Each object records (in `.csv` file):
 - Grab events (`GrabStart, GrabEnd, TouchNoGrab`)
 - Grab count
 - Grab durations
-- Hover without grab count
+- Hover without grab count (`touch_no_grab_count`)
 - Viewing side
 - Viewing angles in dot products:
-    - Front 
-    - Right
-    - Up
+    - `frontDot` 
+    - `rightDot`
+    - `upDot`
+- Final selection (`is_final_selection`)
 
 <!-- ---
 Keywords: XR, VR, Unity, Interaction Tracking, Data Logging, User Behavior Analytics -->
