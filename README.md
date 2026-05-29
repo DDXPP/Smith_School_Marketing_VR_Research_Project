@@ -152,7 +152,9 @@ Each object records (in `.csv` file):
 
 
 ## Notes
-- The common sequence of events in two consecutive grabs would be `touch` → `grab` → `ungrab` → `untouch` → `touch` → `grab`. However, in the special case of `touch_1` → `grab_1` → (ungrab but still touching) → `touch_2` → `grab_2` (i.e., the second grab happens without the user moving their hand away or untouching the object), `time_to_grab` for `grab_2` would be `[timestamp_of_grab_2] - [timestamp_of_touch_1]`, which is equal to the sum of `time_to_grab` for `grab_1` and the time elasped between the two grabs.
+The common sequence of events in two consecutive grabs would be `touch` → `grab` → `ungrab` → `untouch` → `touch` → `grab`. 
+
+However, in the special case of `touch_1` → `grab_1` → (ungrab but still touching) → `touch_2` → `grab_2` (i.e., the second grab happens without the user moving their hand away or untouching the object), `time_to_grab` for `grab_2` would be `[timestamp_of_grab_2] - [timestamp_of_touch_1]`, which is equal to the sum of `time_to_grab` for `grab_1` and the time elasped between the two grabs.
 
 <!-- ---
 Keywords: XR, VR, Unity, Interaction Tracking, Data Logging, User Behavior Analytics -->
