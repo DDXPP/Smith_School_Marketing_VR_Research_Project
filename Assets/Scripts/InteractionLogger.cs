@@ -129,7 +129,7 @@ public class InteractionLogger : MonoBehaviour
                 // if (isOnFinalSelectionTable)
                 //     isOnFinalSelectionTable = false;
 
-                touchStartTime = -1f;
+                // touchStartTime = -1f;
                 // grabStartTime = -1f;
                 break;
 
