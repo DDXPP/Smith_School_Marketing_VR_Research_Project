@@ -15,6 +15,14 @@ The system is designed for user behavior analysis, interaction research, and XR 
 - View-Based Attention Tracking
 - Structured Data Logging
 
+## Installation 
+1. Download the `Smith_School_Marketing_VR.apk` file in the latest release
+2. Transfer the release file to the HMD (e.g., Meta Quest 2), and put it in the `Downloads` folder. For Mac users, use tools like Android File Transfer. 
+3. On the HMD, locate the `Smith_School_Marketing_VR.apk` file using the Files app.
+4. Click the three dots next to the file and select `Open with` → `Package Installer`.
+5. Follow the prompt on screen to install. You may need to select "Trust unknown resources."
+6. Open the app from the App Library.
+
 ## Project Structure
 ```
 Assets/
