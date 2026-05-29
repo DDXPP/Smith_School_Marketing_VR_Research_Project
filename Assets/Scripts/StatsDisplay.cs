@@ -73,17 +73,22 @@ public class StatsDisplay : MonoBehaviour
         InteractionLogger closestObject = null;
         float shortestDistance = Mathf.Infinity;
 
-        Camera cam = Camera.main;
-        if (cam == null) return null;        
-        Vector3 currentPosition = cam.transform.position;
+        InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+
+        bool leftValid = leftDevice.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 leftPos);
+        bool rightValid = rightDevice.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rightPos);
 
         foreach (InteractionLogger il in allObjects)
         {
-            float distanceToObject = (il.transform.position - currentPosition).sqrMagnitude;
+            Vector3 objectPos = il.transform.position;
+            float distanceLeftToObject = (il.transform.position - leftPos).sqrMagnitude;
+            float distanceRightToObject = (il.transform.position - rightPos).sqrMagnitude;
+            float shorterDistanceToObject = distanceLeftToObject < distanceRightToObject ? distanceLeftToObject : distanceRightToObject;
             
-            if (distanceToObject < shortestDistance)
+            if (shorterDistanceToObject < shortestDistance)
             {
-                shortestDistance = distanceToObject;
+                shortestDistance = shorterDistanceToObject;
                 closestObject = il;
             }
         }
